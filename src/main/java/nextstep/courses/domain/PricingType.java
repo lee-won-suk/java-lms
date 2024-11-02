@@ -1,6 +1,6 @@
 package nextstep.courses.domain;
 
-import nextstep.courses.Exception.CustomException;
+import nextstep.courses.exception.CustomException;
 import nextstep.payments.domain.Payment;
 
 public class PricingType {

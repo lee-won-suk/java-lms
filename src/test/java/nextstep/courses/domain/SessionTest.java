@@ -1,6 +1,6 @@
 package nextstep.courses.domain;
 
-import nextstep.courses.Exception.CustomException;
+import nextstep.courses.exception.CustomException;
 import nextstep.courses.domain.sessionimage.ImageCapacity;
 import nextstep.courses.domain.sessionimage.ImageSize;
 import nextstep.courses.domain.sessionimage.ImageType;
@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -34,9 +33,8 @@ public class SessionTest {
     public void setUp() {
 
         sessionDate = new SessionDate(LocalDateTime.now(), LocalDateTime.now().plusDays(2));
-        NsUser nsUser = new NsUser(1L, "test", "pwd", "wonsuk", "email");
-        matchPayment = new Payment("test", 1L, nsUser, 10000L);
-        unMatchPayment = new Payment("test", 1L, nsUser, 9000L);
+        matchPayment = new Payment("test", 1L, 1L, 10000L);
+        unMatchPayment = new Payment("test", 1L, 1L, 9000L);
 
         imageCapacity = new ImageCapacity(IMAGE_CAPACITY);
         imageSize = new ImageSize(WIDTH, HEIGHT);

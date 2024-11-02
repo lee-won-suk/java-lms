@@ -1,16 +1,14 @@
 package nextstep.courses.domain;
 
-import nextstep.courses.Exception.CustomException;
+import nextstep.courses.exception.CustomException;
 import nextstep.courses.domain.sessionimage.ImageCapacity;
 import nextstep.courses.domain.sessionimage.ImageSize;
 import nextstep.courses.domain.sessionimage.ImageType;
 import nextstep.courses.domain.sessionimage.SessionImage;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 

@@ -1,6 +1,6 @@
 package nextstep.courses.domain;
 
-import nextstep.courses.Exception.CustomException;
+import nextstep.courses.exception.CustomException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

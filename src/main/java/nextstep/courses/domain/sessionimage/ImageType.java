@@ -1,6 +1,6 @@
 package nextstep.courses.domain.sessionimage;
 
-import nextstep.courses.Exception.CustomException;
+import nextstep.courses.exception.CustomException;
 
 import java.util.Arrays;
 

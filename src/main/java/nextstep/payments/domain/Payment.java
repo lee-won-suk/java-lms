@@ -11,7 +11,7 @@ public class Payment {
     private Long sessionId;
 
     // 결제한 사용자 아이디
-    private NsUser nsUser;
+    private Long nsUserId;
 
     // 결제 금액
     private Long amount;
@@ -21,16 +21,16 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(String id, Long sessionId, NsUser nsUser, Long amount) {
+    public Payment(String id, Long sessionId, Long nsUserId, Long amount) {
         this.id = id;
         this.sessionId = sessionId;
-        this.nsUser = nsUser;
+        this.nsUserId = nsUserId;
         this.amount = amount;
         this.createdAt = LocalDateTime.now();
     }
 
-    public NsUser payingUser() {
-        return nsUser;
+    public Long payingUser() {
+        return nsUserId;
     }
 
     public boolean matchingAmount(int sessionAmount) {

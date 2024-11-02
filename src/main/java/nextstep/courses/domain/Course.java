@@ -14,23 +14,23 @@ public class Course {
     private Long creatorId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private List<Session> sessionList;
+    private List<Session> sessions;
 
     public Course() {
     }
 
     public Course(String title, Long creatorId) {
-        this(0L, title, creatorId, LocalDateTime.now(), null);
+        this(0L, title, creatorId, LocalDateTime.now(), null,1);
     }
 
-    public Course(Long id, String title, Long creatorId, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Course(Long id, String title, Long creatorId, LocalDateTime createdAt, LocalDateTime updatedAt, int classNumber) {
         this.id = id;
         this.title = title;
         this.creatorId = creatorId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        sessionList = new ArrayList<>();
-        classNumber = count.incrementAndGet();
+        sessions = new ArrayList<>();
+        this.classNumber = classNumber;
     }
 
     public String getTitle() {
