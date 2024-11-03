@@ -1,4 +1,4 @@
-package nextstep.courses.domain.sessionimage;
+package nextstep.courses.domain.image;
 
 public class SessionImage {
 

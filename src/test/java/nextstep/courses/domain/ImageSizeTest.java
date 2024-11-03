@@ -1,7 +1,7 @@
 package nextstep.courses.domain;
 
 import nextstep.courses.exception.CustomException;
-import nextstep.courses.domain.sessionimage.ImageSize;
+import nextstep.courses.domain.image.ImageSize;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

@@ -1,7 +1,7 @@
 package nextstep.courses.domain;
 
 import nextstep.courses.exception.CustomException;
-import nextstep.courses.domain.sessionimage.SessionImage;
+import nextstep.courses.domain.image.SessionImage;
 import nextstep.payments.domain.Payment;
 
 import java.util.ArrayList;
