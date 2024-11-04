@@ -12,7 +12,6 @@ public enum ImageType {
     png,
     svg;
 
-
     public static ImageType validateType(String imageType) {
         return Arrays.stream(values()).filter(type -> type.name().equals(imageType))
                 .findFirst()
