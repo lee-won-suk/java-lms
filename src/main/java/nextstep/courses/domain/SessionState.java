@@ -3,6 +3,9 @@ package nextstep.courses.domain;
 public enum SessionState {
     READY("READY"), START("START"), END("END");
 
+    public String getState() {
+        return state;
+    }
 
     public String state;
 

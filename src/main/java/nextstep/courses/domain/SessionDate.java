@@ -15,4 +15,12 @@ public class SessionDate {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
 }

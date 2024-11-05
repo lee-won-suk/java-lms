@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Session {
+    private Long id;
     private List<Long> students;
     private PricingType pricingType;
     private SessionState state;
@@ -15,15 +16,30 @@ public class Session {
     private int maxStudentCount;
     private SessionDate date;
 
+
     public Session(PricingType pricingType, int maxStudentCount, SessionState state, SessionDate date
             , SessionImage image) {
-        this.pricingType = pricingType;
-        this.students = new ArrayList<Long>();
-        this.maxStudentCount = maxStudentCount;
-        this.state = state;
-        this.date = date;
-        this.image = image;
+        this(0L, new ArrayList<Long>(),pricingType,state,image,maxStudentCount,date);
+    }
 
+    public Session(List<Long> students, PricingType pricingType, SessionState state, SessionImage image, int maxStudentCount, SessionDate date) {
+        this.id = 0L;
+        this.students = students;
+        this.pricingType = pricingType;
+        this.state = state;
+        this.image = image;
+        this.maxStudentCount = maxStudentCount;
+        this.date = date;
+    }
+
+    public Session(Long id, List<Long> students, PricingType pricingType, SessionState state, SessionImage image, int maxStudentCount, SessionDate date) {
+        this.id = id;
+        this.students = students;
+        this.pricingType = pricingType;
+        this.state = state;
+        this.image = image;
+        this.maxStudentCount = maxStudentCount;
+        this.date = date;
     }
 
     public void requestSession(Payment payment) {
@@ -44,6 +60,30 @@ public class Session {
             throw  CustomException.INVALID_SESSION_STATE;
         }
 
+    }
+
+    public List<Long> getStudents() {
+        return students;
+    }
+
+    public PricingType getPricingType() {
+        return pricingType;
+    }
+
+    public SessionState getState() {
+        return state;
+    }
+
+    public SessionImage getImage() {
+        return image;
+    }
+
+    public int getMaxStudentCount() {
+        return maxStudentCount;
+    }
+
+    public SessionDate getDate() {
+        return date;
     }
 
 }

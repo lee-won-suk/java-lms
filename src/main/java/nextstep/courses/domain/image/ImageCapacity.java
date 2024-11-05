@@ -9,6 +9,7 @@ public class ImageCapacity {
 
     private final int imageSize;
 
+
     public ImageCapacity(int imageSize) {
         validateSize(imageSize);
         this.imageSize = imageSize;
@@ -19,4 +20,9 @@ public class ImageCapacity {
             throw CustomException.OVER_MAX_IMAGE_CAPACITY;
         }
     }
+
+    public int getImageSize() {
+        return imageSize;
+    }
+
 }

@@ -6,7 +6,9 @@ import nextstep.payments.domain.Payment;
 public class PricingType {
 
     private final int sessionAmount;
-    private boolean isPremium;
+    private final boolean isPremium;
+
+
 
     public PricingType(boolean isPremium, int sessionAmount) {
         validate(isPremium,sessionAmount);
@@ -31,5 +33,13 @@ public class PricingType {
         if (isPremium && !payment.matchingAmount(sessionAmount)) {
             throw CustomException.NOT_MATCHING_SESSION_AMOUNT;
         }
+    }
+
+    public int getSessionAmount() {
+        return sessionAmount;
+    }
+
+    public boolean getIsPremium() {
+        return isPremium;
     }
 }

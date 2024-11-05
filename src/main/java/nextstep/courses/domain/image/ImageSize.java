@@ -29,4 +29,13 @@ public class ImageSize {
             throw CustomException.IMAGE_PERCENT_ERROR;
         }
     }
+
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }
