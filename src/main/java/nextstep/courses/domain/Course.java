@@ -45,6 +45,10 @@ public class Course {
         return createdAt;
     }
 
+    public int getClassNumber() {
+        return classNumber;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -55,4 +59,6 @@ public class Course {
                 ", updatedAt=" + updatedAt +
                 '}';
     }
+
+
 }

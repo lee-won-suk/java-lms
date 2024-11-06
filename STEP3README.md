@@ -13,3 +13,9 @@
 2. jdbcCourseRepository
 3. CourseRepositoryTest
 
+
+## 주요 피드백
+1. 숫자로 순서를 써서 하는건 실수 및 어려운 문제가 있음 
+-> NamedParameterJdbcTemplate사용해보기
+
+2. 
