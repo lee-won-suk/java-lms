@@ -24,12 +24,16 @@ public class Course {
     }
 
     public Course(Long id, String title, Long creatorId, LocalDateTime createdAt, LocalDateTime updatedAt, int classNumber) {
+        this(id, title, creatorId, createdAt, updatedAt, classNumber, new ArrayList<>());
+        }
+
+    public Course(Long id, String title, Long creatorId, LocalDateTime createdAt, LocalDateTime updatedAt, int classNumber, List<Session> sessions) {
         this.id = id;
         this.title = title;
         this.creatorId = creatorId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        sessions = new ArrayList<>();
+        this.sessions = sessions;
         this.classNumber = classNumber;
     }
 

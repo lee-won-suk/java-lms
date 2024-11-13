@@ -14,6 +14,14 @@ import java.time.LocalDateTime;
 @Repository("courseRepository")
 public class JdbcCourseRepository implements CourseRepository {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final static RowMapper<Course> ROW_MAPPER = (rs, rowNum) -> new Course(
+            rs.getLong("id"),
+            rs.getString("title"),
+            rs.getLong("creator_id"),
+            toLocalDateTime(rs.getTimestamp("created_at")),
+            toLocalDateTime(rs.getTimestamp("updated_at")),
+            rs.getInt("class_number")
+    );
 
     public JdbcCourseRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
@@ -35,21 +43,11 @@ public class JdbcCourseRepository implements CourseRepository {
     @Override
     public Course findById(Long id) {
         String sql = "select id, title, creator_id, created_at, updated_at, class_number from course where id = :id";
-
-        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
-                .addValue("id",id);
-        RowMapper<Course> rowMapper = (rs, rowNum) -> new Course(
-                rs.getLong("id"),
-                rs.getString("title"),
-                rs.getLong("creator_id"),
-                toLocalDateTime(rs.getTimestamp("created_at")),
-                toLocalDateTime(rs.getTimestamp("updated_at")),
-                rs.getInt("class_number")
-        );
-        return namedParameterJdbcTemplate.queryForObject(sql, parameterSource, rowMapper);
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource().addValue("id",id);
+        return namedParameterJdbcTemplate.queryForObject(sql, parameterSource, ROW_MAPPER);
     }
 
-    private LocalDateTime toLocalDateTime(Timestamp timestamp) {
+    private static LocalDateTime toLocalDateTime(Timestamp timestamp) {
         if (timestamp == null) {
             return null;
         }
