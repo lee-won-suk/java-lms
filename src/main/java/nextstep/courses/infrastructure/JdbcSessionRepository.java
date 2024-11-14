@@ -82,7 +82,7 @@ public class JdbcSessionRepository implements SessionRepository {
                 " session_state," +
                 " image_capacity," +
                 " image_type," +
-                " image_width, image_height, max_student_count, start_date, end_date from session where id = ?";
+                " image_width, image_height, max_student_count, start_date, end_date, course_id from session where id = ?";
         RowMapper<Session> rowMapper = (rs, rowNum) -> {
             long pk = rs.getLong(1);
             List<Long> students = findStudents(pk);
@@ -93,7 +93,8 @@ public class JdbcSessionRepository implements SessionRepository {
                     SessionState.valueOf(rs.getString(4)),
                     new SessionImage(new ImageCapacity(rs.getInt(5)), ImageType.valueOf(rs.getString(6)), new ImageSize(rs.getInt(7),rs.getInt(8))),
                     rs.getInt(9),
-                    new SessionDate(toLocalDateTime(rs.getTimestamp(10)), toLocalDateTime(rs.getTimestamp(11))));
+                    new SessionDate(toLocalDateTime(rs.getTimestamp(10)), toLocalDateTime(rs.getTimestamp(11)))
+                    ,rs.getLong(12) );
         };
 
         return jdbcTemplate.queryForObject(sql, rowMapper, id);

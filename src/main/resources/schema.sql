@@ -20,6 +20,7 @@ create table session (
     max_student_count int,
     start_date timestamp,
     end_date timestamp,
+    course_id int,
     primary key (id)
 );
 

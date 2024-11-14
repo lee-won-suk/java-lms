@@ -15,11 +15,12 @@ public class Session {
     private SessionImage image;
     private int maxStudentCount;
     private SessionDate date;
+    private Long courseId;
 
 
     public Session(PricingType pricingType, int maxStudentCount, SessionState state, SessionDate date
             , SessionImage image) {
-        this(0L, new ArrayList<Long>(),pricingType,state,image,maxStudentCount,date);
+        this(0L, new ArrayList<Long>(),pricingType,state,image,maxStudentCount,date,0L );
     }
 
     public Session(List<Long> students, PricingType pricingType, SessionState state, SessionImage image, int maxStudentCount, SessionDate date) {
@@ -30,9 +31,10 @@ public class Session {
         this.image = image;
         this.maxStudentCount = maxStudentCount;
         this.date = date;
+        this.courseId = 0L;
     }
 
-    public Session(Long id, List<Long> students, PricingType pricingType, SessionState state, SessionImage image, int maxStudentCount, SessionDate date) {
+    public Session(Long id, List<Long> students, PricingType pricingType, SessionState state, SessionImage image, int maxStudentCount, SessionDate date, Long courseId) {
         this.id = id;
         this.students = students;
         this.pricingType = pricingType;
@@ -40,6 +42,7 @@ public class Session {
         this.image = image;
         this.maxStudentCount = maxStudentCount;
         this.date = date;
+        this.courseId = courseId;
     }
 
     public void requestSession(Payment payment) {

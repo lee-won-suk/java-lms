@@ -20,10 +20,11 @@ public class CourseRepositoryTest {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private CourseRepository courseRepository;
+    private JdbcSessionRepository jdbcSessionRepository;
 
     @BeforeEach
     void setUp() {
-        courseRepository = new JdbcCourseRepository(namedParameterJdbcTemplate);
+        courseRepository = new JdbcCourseRepository(namedParameterJdbcTemplate, jdbcSessionRepository);
     }
 
     @Test

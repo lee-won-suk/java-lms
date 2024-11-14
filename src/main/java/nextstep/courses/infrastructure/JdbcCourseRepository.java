@@ -2,6 +2,7 @@ package nextstep.courses.infrastructure;
 
 import nextstep.courses.domain.Course;
 import nextstep.courses.domain.CourseRepository;
+import nextstep.courses.domain.Session;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -10,21 +11,17 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository("courseRepository")
 public class JdbcCourseRepository implements CourseRepository {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private final static RowMapper<Course> ROW_MAPPER = (rs, rowNum) -> new Course(
-            rs.getLong("id"),
-            rs.getString("title"),
-            rs.getLong("creator_id"),
-            toLocalDateTime(rs.getTimestamp("created_at")),
-            toLocalDateTime(rs.getTimestamp("updated_at")),
-            rs.getInt("class_number")
-    );
+    private JdbcSessionRepository jdbcSessionRepository;
 
-    public JdbcCourseRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public JdbcCourseRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate, JdbcSessionRepository sessionRepository) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        this.jdbcSessionRepository = sessionRepository;
     }
 
     @Override
@@ -43,9 +40,24 @@ public class JdbcCourseRepository implements CourseRepository {
     @Override
     public Course findById(Long id) {
         String sql = "select id, title, creator_id, created_at, updated_at, class_number from course where id = :id";
+        List<Session> sessions = new ArrayList<>();/*getSessions(id);*/
+        RowMapper<Course> ROW_MAPPER = (rs, rowNum) -> new Course(
+                rs.getLong("id"),
+                rs.getString("title"),
+                rs.getLong("creator_id"),
+                toLocalDateTime(rs.getTimestamp("created_at")),
+                toLocalDateTime(rs.getTimestamp("updated_at")),
+                rs.getInt("class_number"),
+                sessions
+        );
         MapSqlParameterSource parameterSource = new MapSqlParameterSource().addValue("id",id);
         return namedParameterJdbcTemplate.queryForObject(sql, parameterSource, ROW_MAPPER);
     }
+
+ /*   private List<Session> getSessions(Long id) {
+        jdbcSessionRepository.findById()
+    }
+*/
 
     private static LocalDateTime toLocalDateTime(Timestamp timestamp) {
         if (timestamp == null) {

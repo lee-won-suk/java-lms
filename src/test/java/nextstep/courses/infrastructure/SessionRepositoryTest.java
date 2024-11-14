@@ -43,7 +43,7 @@ public class SessionRepositoryTest {
                 new SessionImage(new ImageCapacity(1024), ImageType.valueOf("gif"),
                         new ImageSize(300, 200)),
                 10,
-                new SessionDate(LocalDateTime.now(), LocalDateTime.now().plusDays(2)));
+                new SessionDate(LocalDateTime.now(), LocalDateTime.now().plusDays(2)),1L );
 
         Long sessionPk = sessionRepository.save(testSession);
         Session savedSession = sessionRepository.findById(sessionPk);
