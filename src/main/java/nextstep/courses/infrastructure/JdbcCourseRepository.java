@@ -41,15 +41,13 @@ public class JdbcCourseRepository implements CourseRepository {
     @Override
     public Course findById(Long id) {
         String sql = "select id, title, creator_id, created_at, updated_at, class_number from course where id = :id";
-        List<Session> sessions = getSessions(id);/*getSessions(id);*/
         RowMapper<Course> ROW_MAPPER = (rs, rowNum) -> new Course(
                 rs.getLong("id"),
                 rs.getString("title"),
                 rs.getLong("creator_id"),
                 toLocalDateTime(rs.getTimestamp("created_at")),
                 toLocalDateTime(rs.getTimestamp("updated_at")),
-                rs.getInt("class_number"),
-                sessions
+                rs.getInt("class_number")
         );
         MapSqlParameterSource parameterSource = new MapSqlParameterSource().addValue("id", id);
         return namedParameterJdbcTemplate.queryForObject(sql, parameterSource, ROW_MAPPER);
@@ -62,8 +60,5 @@ public class JdbcCourseRepository implements CourseRepository {
         return timestamp.toLocalDateTime();
     }
 
-    private List<Session> getSessions(Long id) {
-        List<Long> sessionIds = courseSessionRepository.findByCourseId(id);
-        return sessionIds.stream().map(jdbcSessionRepository::findById).collect(Collectors.toList());
-    }
+
 }
