@@ -52,7 +52,7 @@ public class CourseRepositoryTest {
 
         jdbcCourseSesisonRepository.save(1L, List.of(sessionPk));
 
-        Course course = new Course(1L,"TDD, 클린 코드 with Java", sessionPk, List.of(testSession));
+        Course course = new Course(1L,"TDD, 클린 코드 with Java", sessionPk);
         int count = courseRepository.save(course);
         assertThat(count).isEqualTo(1);
         Course savedCourse = courseRepository.findById(1L);
