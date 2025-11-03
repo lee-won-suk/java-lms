@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository()
+@Repository
 public class JdbcSessionRepository implements SessionRepository {
     private final JdbcOperations jdbcTemplate;
 

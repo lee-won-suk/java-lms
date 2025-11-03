@@ -3,8 +3,8 @@ package nextstep.courses.infrastructure;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
+
 @Repository
 public class JdbcCourseSesisonRepository implements CourseSessionRepository {
 
@@ -30,7 +30,7 @@ public class JdbcCourseSesisonRepository implements CourseSessionRepository {
     public List<Long> findByCourseId(Long courseId) {
         String sql = "select session_id from course_session where course_id = ?";
         RowMapper<Long> rowMapper = (rs, rowNum) -> rs.getLong("session_id");
-        return jdbcTemplate.query(sql,rowMapper, courseId);
+        return jdbcTemplate.query(sql, rowMapper, courseId);
     }
 
 }
